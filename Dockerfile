@@ -20,4 +20,4 @@ RUN cd /usr/src/Python-3.5.2 && ./configure && make altinstall
 
 # Use Python 2 to install Fabric
 RUN easy_install pip
-RUN pip2.7 install Fabric==1.12.0
+RUN pip2.7 install Fabric==1.12.0 awscli==1.11.2
