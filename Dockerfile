@@ -1,7 +1,7 @@
 FROM jenkins:2.7.4
 
 USER root
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget s3cmd
 
 # install docker
 RUN wget -qO- https://get.docker.com/ | sh
