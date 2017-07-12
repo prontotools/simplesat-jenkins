@@ -20,13 +20,13 @@ RUN apt-get install -y build-essential \
   libc6-dev \
   libbz2-dev
 RUN cd /usr/src && \
-  wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz && \
-  tar xzf Python-3.5.2.tgz
-RUN cd /usr/src/Python-3.5.2 && \
+  wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz && \
+  tar xzf Python-3.6.1.tgz
+RUN cd /usr/src/Python-3.6.1 && \
   ./configure && \
   make altinstall
 
-RUN pip3.5 install awscli==1.11.2
+RUN pip3.6 install awscli==1.11.2
 
 # use python 2 to install fabric and awscli
 RUN easy_install pip
