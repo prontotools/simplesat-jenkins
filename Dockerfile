@@ -1,4 +1,4 @@
-FROM jenkins:2.7.4
+FROM jenkins:2.60.1
 
 USER root
 RUN apt-get update && apt-get install -y wget s3cmd
@@ -18,10 +18,13 @@ RUN apt-get install -y build-essential \
   tk-dev \
   libgdbm-dev \
   libc6-dev \
-  libbz2-dev
+  libbz2-dev \
+  postgresql
+
 RUN cd /usr/src && \
   wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz && \
   tar xzf Python-3.6.1.tgz
+
 RUN cd /usr/src/Python-3.6.1 && \
   ./configure && \
   make altinstall
@@ -60,6 +63,9 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
+# install mjml runtime
+RUN npm install -g mjml
+
 # create directories for credential
 RUN mkdir -p /root/.aws/
-RUN mkdir -p /root/.ssh/
+RUN mkdir -p /var/jenkins_home/.ssh/
