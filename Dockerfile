@@ -29,11 +29,18 @@ RUN cd /usr/src/Python-3.6.1 && \
   ./configure && \
   make altinstall
 
-RUN pip3.6 install awscli==1.11.2
+RUN pip3.6 install awscli==1.11.118
 
-# use python 2 to install fabric and awscli
+# use python 2 to install fabric
 RUN easy_install pip
 RUN pip2.7 install Fabric==1.12.0
+
+# Install robot requirements
+RUN pip2.7 install robotframework==3.0 \
+  robotframework-selenium2library==1.8.0 \
+  robotframework-xvfb==1.2.2 \
+  requests==2.13.0 \
+  robotframework-requests==0.4.7
 
 # install node
 # code below from https://github.com/nodejs/docker-node/blob/4029a8f71920e1e23efa79602167014f9c325ba0/6.7/Dockerfile
